@@ -3,6 +3,7 @@
 <section class="auth-wrap">
     <form method="post" action="/register" class="form-panel">
         <h1>Create Account</h1>
+        <p class="form-note">Use a real, active email address. Paystack may reject checkout payments from fake or invalid email addresses.</p>
         <input type="hidden" name="_token" value="{$csrf}">
         <label>Name <input type="text" name="name" required></label>
         <label>Email <input type="email" name="email" required></label>

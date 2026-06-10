@@ -181,6 +181,23 @@ class EcommerceFlowTest extends TestCase
             ->assertSessionHasErrors('email');
     }
 
+    public function test_registration_warns_about_real_email_and_rejects_fake_domains(): void
+    {
+        $this->get('/register')
+            ->assertOk()
+            ->assertSee('Use a real, active email address.');
+
+        $this->from('/register')
+            ->post('/register', [
+                'name' => 'Fake Email User',
+                'email' => 'person@fake-domain-not-real.invalid',
+                'password' => 'password123',
+                'password_confirmation' => 'password123',
+            ])
+            ->assertRedirect('/register')
+            ->assertSessionHasErrors('email');
+    }
+
     public function test_admin_can_view_orders_dashboard(): void
     {
         $this->seed();
