@@ -228,6 +228,7 @@ td span { color: var(--muted); font-size: .9rem; }
 .table-product img { width: 58px; height: 48px; border-radius: 6px; }
 .table-product div { display: grid; gap: 4px; }
 .product-form { max-width: 840px; }
+.profile-form { max-width: 560px; }
 .form-grid { display: grid; grid-template-columns: 1fr 180px 140px; gap: 16px; }
 .filter-bar {
     display: grid;

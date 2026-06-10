@@ -15,10 +15,12 @@
                     <a href="/admin/products">Products</a>
                     <a href="/admin/orders">Orders</a>
                     <a href="/admin/payments">Payments</a>
+                    <a href="/profile">Profile</a>
                 {else}
                     <a href="/">Products</a>
                     <a href="/orders">Orders</a>
                     <a href="/cart">Cart ({$cartCount})</a>
+                    <a href="/profile">Profile</a>
                 {/if}
                 <form method="post" action="/logout">
                     <input type="hidden" name="_token" value="{$csrf}">

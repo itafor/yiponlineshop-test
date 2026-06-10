@@ -129,6 +129,58 @@ class EcommerceFlowTest extends TestCase
             ->assertForbidden();
     }
 
+    public function test_authenticated_users_can_update_profile_details(): void
+    {
+        $this->seed();
+
+        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+
+        $this->actingAs($customer)
+            ->get('/profile')
+            ->assertOk()
+            ->assertSee('Update your name and email address.');
+
+        $this->actingAs($customer)
+            ->patch('/profile', [
+                'name' => 'Updated Customer',
+                'email' => 'updated.customer@example.com',
+            ])
+            ->assertRedirect()
+            ->assertSessionHas('success', 'Profile updated successfully.');
+
+        $this->assertDatabaseHas('users', [
+            'id' => $customer->id,
+            'name' => 'Updated Customer',
+            'email' => 'updated.customer@example.com',
+        ]);
+    }
+
+    public function test_profile_email_must_be_valid_and_unique(): void
+    {
+        $this->seed();
+
+        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+
+        $this->actingAs($customer)
+            ->from('/profile')
+            ->patch('/profile', [
+                'name' => 'Customer',
+                'email' => 'not-an-email',
+            ])
+            ->assertRedirect('/profile')
+            ->assertSessionHasErrors('email');
+
+        $this->actingAs($customer)
+            ->from('/profile')
+            ->patch('/profile', [
+                'name' => 'Customer',
+                'email' => $admin->email,
+            ])
+            ->assertRedirect('/profile')
+            ->assertSessionHasErrors('email');
+    }
+
     public function test_admin_can_view_orders_dashboard(): void
     {
         $this->seed();

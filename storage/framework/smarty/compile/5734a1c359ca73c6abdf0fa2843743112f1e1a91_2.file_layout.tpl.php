@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.8.0, created on 2026-06-10 09:57:43
+/* Smarty version 5.8.0, created on 2026-06-10 12:05:21
   from 'file:layout.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.8.0',
-  'unifunc' => 'content_6a293517d95008_35643552',
+  'unifunc' => 'content_6a295301816353_65193434',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5734a1c359ca73c6abdf0fa2843743112f1e1a91' => 
     array (
       0 => 'layout.tpl',
-      1 => 1781085437,
+      1 => 1781093021,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6a293517d95008_35643552 (\Smarty\Template $_smarty_tpl) {
+function content_6a295301816353_65193434 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\YIPONLINE\\resources\\smarty';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -43,11 +43,13 @@ css/app.css">
                     <a href="/admin/products">Products</a>
                     <a href="/admin/orders">Orders</a>
                     <a href="/admin/payments">Payments</a>
+                    <a href="/profile">Profile</a>
                 <?php } else { ?>
                     <a href="/">Products</a>
                     <a href="/orders">Orders</a>
                     <a href="/cart">Cart (<?php echo htmlspecialchars((string) ($_smarty_tpl->getValue('cartCount')), ENT_QUOTES, 'UTF-8');?>
 )</a>
+                    <a href="/profile">Profile</a>
                 <?php }?>
                 <form method="post" action="/logout">
                     <input type="hidden" name="_token" value="<?php echo htmlspecialchars((string) ($_smarty_tpl->getValue('csrf')), ENT_QUOTES, 'UTF-8');?>
@@ -83,7 +85,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             </div>
         <?php }?>
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11690473876a293517d88395_11120661', 'content');
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17414782796a2953016163a6_65147674', 'content');
 ?>
 
     </main>
@@ -91,7 +93,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11690473876a2
 </html>
 <?php }
 /* {block 'content'} */
-class Block_11690473876a293517d88395_11120661 extends \Smarty\Runtime\Block
+class Block_17414782796a2953016163a6_65147674 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\YIPONLINE\\resources\\smarty';
