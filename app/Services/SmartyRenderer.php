@@ -30,6 +30,7 @@ class SmartyRenderer
             'flashError' => session('error'),
             'errorsBag' => session('errors')?->all() ?? [],
             'oldInput' => session()->getOldInput(),
+            'demoAccounts' => config('services.demo_accounts'),
         ];
 
         foreach (array_merge($shared, $data) as $key => $value) {

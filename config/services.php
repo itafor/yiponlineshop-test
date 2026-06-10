@@ -37,6 +37,12 @@ return [
         'secret_key' => env('PAYSTACK_SECRET_KEY'),
     ],
 
+    'demo_accounts' => [
+        'admin_email' => env('DEMO_ADMIN_EMAIL', 'admin@yiponline.test'),
+        'customer_email' => env('DEMO_CUSTOMER_EMAIL', 'customer@yiponline.test'),
+        'password' => env('DEMO_ACCOUNT_PASSWORD', 'password123'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

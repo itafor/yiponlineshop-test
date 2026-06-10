@@ -21,7 +21,7 @@ class EcommerceFlowTest extends TestCase
         $this->seed();
 
         $product = Product::firstOrFail();
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $customer = $this->customerUser();
 
         $this->mock(PaystackPayment::class, function ($mock): void {
             $mock->shouldReceive('initialize')
@@ -48,7 +48,7 @@ class EcommerceFlowTest extends TestCase
             ->assertRedirect('https://checkout.paystack.com/demo');
 
         $this->assertDatabaseHas('orders', [
-            'customer_email' => 'customer@yiponline.test',
+            'customer_email' => config('services.demo_accounts.customer_email'),
             'status' => 'pending',
             'payment_status' => 'unpaid',
             'payment_reference' => 'YIP-TEST-REFERENCE',
@@ -73,7 +73,7 @@ class EcommerceFlowTest extends TestCase
         $this->seed();
 
         $product = Product::firstOrFail();
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $customer = $this->customerUser();
 
         $this->post('/cart/'.$product->slug, ['quantity' => 1])
             ->assertRedirect('/cart');
@@ -90,7 +90,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $customer = $this->customerUser();
         $otherCustomer = User::factory()->create();
         $customerOrder = Order::create([
             'user_id' => $customer->id,
@@ -133,7 +133,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $customer = $this->customerUser();
 
         $this->actingAs($customer)
             ->get('/profile')
@@ -159,8 +159,8 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $customer = $this->customerUser();
+        $admin = $this->adminUser();
 
         $this->actingAs($customer)
             ->from('/profile')
@@ -185,11 +185,11 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
         $order = Order::create([
             'user_id' => $admin->id,
             'customer_name' => 'Demo Customer',
-            'customer_email' => 'customer@yiponline.test',
+            'customer_email' => config('services.demo_accounts.customer_email'),
             'shipping_address' => '15 Demo Street, Lagos',
             'status' => 'pending',
             'payment_status' => 'paid',
@@ -221,7 +221,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
 
         $this->mock(CloudinaryUploader::class, function ($mock): void {
             $mock->shouldReceive('upload')
@@ -255,7 +255,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
 
         for ($index = 1; $index <= 12; $index++) {
             Product::create([
@@ -292,7 +292,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
         $existingProduct = Product::firstOrFail();
 
         $this->actingAs($admin)
@@ -314,7 +314,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
         $product = Product::with('images')->firstOrFail();
 
         $this->mock(CloudinaryUploader::class, function ($mock): void {
@@ -352,8 +352,8 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
+        $customer = $this->customerUser();
         $product = Product::firstOrFail();
 
         $this->actingAs($admin)
@@ -373,8 +373,8 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
+        $customer = $this->customerUser();
         $product = Product::firstOrFail();
 
         $this->actingAs($admin)->get('/')->assertForbidden();
@@ -390,7 +390,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $customer = User::where('email', 'customer@yiponline.test')->firstOrFail();
+        $customer = $this->customerUser();
         $order = Order::create([
             'user_id' => $customer->id,
             'customer_name' => $customer->name,
@@ -428,7 +428,7 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
         $product = Product::with('images')->firstOrFail();
         $image = $product->images->firstOrFail();
 
@@ -457,12 +457,12 @@ class EcommerceFlowTest extends TestCase
     {
         $this->seed();
 
-        $admin = User::where('email', 'admin@yiponline.test')->firstOrFail();
+        $admin = $this->adminUser();
         $product = Product::firstOrFail();
         $order = Order::create([
             'user_id' => $admin->id,
             'customer_name' => 'Demo Customer',
-            'customer_email' => 'customer@yiponline.test',
+            'customer_email' => config('services.demo_accounts.customer_email'),
             'shipping_address' => '15 Demo Street, Lagos',
             'status' => 'pending',
             'total' => 24500,
@@ -486,5 +486,15 @@ class EcommerceFlowTest extends TestCase
         $this->assertDatabaseHas('products', [
             'id' => $product->id,
         ]);
+    }
+
+    private function adminUser(): User
+    {
+        return User::where('email', config('services.demo_accounts.admin_email'))->firstOrFail();
+    }
+
+    private function customerUser(): User
+    {
+        return User::where('email', config('services.demo_accounts.customer_email'))->firstOrFail();
     }
 }

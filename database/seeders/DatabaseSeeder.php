@@ -12,19 +12,23 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        $adminEmail = config('services.demo_accounts.admin_email');
+        $customerEmail = config('services.demo_accounts.customer_email');
+        $password = config('services.demo_accounts.password');
+
         User::updateOrCreate([
-            'email' => 'admin@yiponline.test',
+            'email' => $adminEmail,
         ], [
             'name' => 'YipOnline Admin',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make($password),
             'is_admin' => true,
         ]);
 
         User::updateOrCreate([
-            'email' => 'customer@yiponline.test',
+            'email' => $customerEmail,
         ], [
             'name' => 'Demo Customer',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make($password),
             'is_admin' => false,
         ]);
 
