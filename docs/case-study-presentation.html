@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YipOnline E-commerce Case Study</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #14211d;
+            background: #f5f7f4;
+        }
+
+        .slide {
+            width: 297mm;
+            height: 210mm;
+            page-break-after: always;
+            padding: 22mm 24mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #fbfcfa;
+            border-bottom: 1px solid #dce6e1;
+        }
+
+        .slide:last-child {
+            page-break-after: auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f5e4c, #14211d);
+            color: #ffffff;
+        }
+
+        .kicker {
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0;
+            font-weight: 700;
+            color: #c99528;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 54px;
+            line-height: 1.02;
+            margin: 0 0 20px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin: 0 0 18px;
+        }
+
+        h3 {
+            font-size: 21px;
+            margin: 0 0 8px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.55;
+            margin: 0;
+            color: #53625d;
+        }
+
+        .hero p {
+            color: #dce6e1;
+            max-width: 780px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+        .grid.two {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #dce6e1;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 118px;
+        }
+
+        .card p,
+        li {
+            font-size: 16px;
+            line-height: 1.45;
+            color: #53625d;
+        }
+
+        ul {
+            margin: 12px 0 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .step {
+            background: #ffffff;
+            border: 1px solid #dce6e1;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .step strong {
+            display: block;
+            color: #0f5e4c;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+            font-size: 13px;
+            color: #687873;
+            border-top: 1px solid #dce6e1;
+            padding-top: 12px;
+        }
+
+        .hero .footer {
+            border-top-color: rgba(255, 255, 255, .2);
+            color: #dce6e1;
+        }
+
+        .metric {
+            font-size: 44px;
+            color: #0f5e4c;
+            font-weight: 800;
+        }
+
+        .code {
+            font-family: Consolas, monospace;
+            background: #eef4f2;
+            border-radius: 6px;
+            padding: 3px 6px;
+            color: #14211d;
+        }
+
+        .stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .pill {
+            border: 1px solid #cfe0d9;
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: #ffffff;
+            font-size: 15px;
+            color: #14211d;
+        }
+
+        .hero .pill {
+            background: rgba(255, 255, 255, .12);
+            border-color: rgba(255, 255, 255, .24);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <section class="slide hero">
+        <div>
+            <div class="kicker">PHP Full Stack Developer Case Study</div>
+            <h1>YipOnline E-commerce System</h1>
+            <p>A Laravel 12 e-commerce case study with Smarty templates, MySQL persistence, Cloudinary product images, Paystack checkout, admin management, customer order tracking, and test coverage.</p>
+            <div class="stack">
+                <span class="pill">Laravel 12</span>
+                <span class="pill">PHP 8.2</span>
+                <span class="pill">Smarty</span>
+                <span class="pill">MySQL</span>
+                <span class="pill">Cloudinary</span>
+                <span class="pill">Paystack</span>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Prepared for YipOnline</span>
+            <span>Case Study Submission</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Brief</div>
+            <h2>Project Objective</h2>
+            <p>Build a basic e-commerce site using Laravel or PHP, with Smarty integration as a bonus, covering storefront, cart, checkout, authentication, and admin order management.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Customer Experience</h3>
+                    <p>Customers can browse products, view details, manage cart, checkout with Paystack, and track orders.</p>
+                </div>
+                <div class="card">
+                    <h3>Admin Experience</h3>
+                    <p>Admins can manage products, view all orders, inspect order details, and review payment history.</p>
+                </div>
+                <div class="card">
+                    <h3>Technical Focus</h3>
+                    <p>Clean MVC structure, secure validation, role separation, external service integration, and automated tests.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>YipOnline E-commerce System</span>
+            <span>1 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Architecture</div>
+            <h2>Application Structure</h2>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Laravel MVC</h3>
+                    <ul>
+                        <li>Controllers handle storefront, cart, checkout, orders, profile, and admin operations.</li>
+                        <li>Eloquent models manage users, products, product images, orders, and order items.</li>
+                        <li>Middleware separates admin and customer-only resources.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Smarty View Layer</h3>
+                    <ul>
+                        <li>Smarty templates live in <span class="code">resources/smarty</span>.</li>
+                        <li>A custom <span class="code">SmartyRenderer</span> service shares auth, CSRF, flash, and cart data.</li>
+                        <li>Plain CSS powers the responsive interface without a frontend build dependency.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="stack">
+                <span class="pill">Controllers</span>
+                <span class="pill">Models</span>
+                <span class="pill">Middleware</span>
+                <span class="pill">Migrations</span>
+                <span class="pill">Seeders</span>
+                <span class="pill">Feature Tests</span>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Laravel structure with Smarty rendering</span>
+            <span>2 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Customer Flow</div>
+            <h2>Storefront and Checkout</h2>
+            <div class="flow">
+                <div class="step"><strong>1</strong>Browse active products</div>
+                <div class="step"><strong>2</strong>View product gallery</div>
+                <div class="step"><strong>3</strong>Add available stock to cart</div>
+                <div class="step"><strong>4</strong>Checkout with address</div>
+                <div class="step"><strong>5</strong>Pay and track order</div>
+            </div>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Cart Safety</h3>
+                    <p>Stock is validated when adding, updating, and checking out. Users see friendly messages when an item is out of stock.</p>
+                </div>
+                <div class="card">
+                    <h3>Order Tracking</h3>
+                    <p>Customers have an Orders menu where they can see order status, payment status, totals, and line items.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Customer workflow</span>
+            <span>3 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Admin Flow</div>
+            <h2>Admin Dashboard</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Products</h3>
+                    <p>Admins can create, view, edit, search, filter, paginate, and delete products when they have not been ordered.</p>
+                </div>
+                <div class="card">
+                    <h3>Orders</h3>
+                    <p>Admins can see all system orders, update fulfillment status, and inspect attached products.</p>
+                </div>
+                <div class="card">
+                    <h3>Payments</h3>
+                    <p>Admins can review Paystack references, payment status, paid revenue, and linked orders.</p>
+                </div>
+            </div>
+            <p style="margin-top:24px;">Admin and customer dashboards are separated with middleware, so admins cannot access customer cart resources and customers cannot access admin resources.</p>
+        </div>
+        <div class="footer">
+            <span>Admin management</span>
+            <span>4 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Integrations</div>
+            <h2>Cloudinary and Paystack</h2>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Cloudinary Images</h3>
+                    <ul>
+                        <li>Product images are uploaded to Cloudinary.</li>
+                        <li>Multiple product images are stored in a dedicated <span class="code">product_images</span> table.</li>
+                        <li>Product detail pages show an active image and thumbnail gallery.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Paystack Payments</h3>
+                    <ul>
+                        <li>Checkout initializes a Paystack transaction.</li>
+                        <li>Callback verifies transaction reference and amount.</li>
+                        <li>Orders track payment status, reference, authorization URL, and paid date.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>External services</span>
+            <span>5 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Security</div>
+            <h2>Validation and Access Control</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Authentication</h3>
+                    <p>Users can register, log in, log out, and update their profile details. Email values are validated and unique.</p>
+                </div>
+                <div class="card">
+                    <h3>Authorization</h3>
+                    <p>Admin and customer access is separated through route middleware and controller checks.</p>
+                </div>
+                <div class="card">
+                    <h3>Form Safety</h3>
+                    <p>CSRF tokens, Laravel validation, stock checks, and ownership checks protect common workflows.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Security considerations</span>
+            <span>6 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Data Model</div>
+            <h2>Core Database Tables</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Users</h3>
+                    <p>Stores customers and admins with an <span class="code">is_admin</span> role flag.</p>
+                </div>
+                <div class="card">
+                    <h3>Products</h3>
+                    <p>Stores product name, slug, description, price, stock, active status, and main image.</p>
+                </div>
+                <div class="card">
+                    <h3>Product Images</h3>
+                    <p>Stores multiple Cloudinary image URLs and public IDs per product.</p>
+                </div>
+                <div class="card">
+                    <h3>Orders</h3>
+                    <p>Stores customer details, shipping address, fulfillment status, total, and payment data.</p>
+                </div>
+                <div class="card">
+                    <h3>Order Items</h3>
+                    <p>Stores product snapshot, quantity, unit price, and line total for each order.</p>
+                </div>
+                <div class="card">
+                    <h3>Sessions</h3>
+                    <p>Database-backed sessions support Laravel authentication and session cart storage.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>MySQL schema</span>
+            <span>7 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Quality</div>
+            <h2>Testing Coverage</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="metric">19</div>
+                    <p>Automated tests currently pass across unit and feature test suites.</p>
+                </div>
+                <div class="card">
+                    <div class="metric">108</div>
+                    <p>Assertions cover checkout, orders, admin CRUD, profiles, access control, payments, and stock checks.</p>
+                </div>
+                <div class="card">
+                    <div class="metric">0</div>
+                    <p>External payment/image APIs are mocked in tests to avoid real charges or uploads.</p>
+                </div>
+            </div>
+            <p style="margin-top:24px;">Verification command: <span class="code">php artisan test</span></p>
+        </div>
+        <div class="footer">
+            <span>Testing and reliability</span>
+            <span>8 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <div class="kicker">Setup</div>
+            <h2>Running the Project</h2>
+            <div class="grid two">
+                <div class="card">
+                    <h3>Commands</h3>
+                    <ul>
+                        <li><span class="code">composer install</span></li>
+                        <li><span class="code">cp .env.example .env</span></li>
+                        <li><span class="code">php artisan key:generate</span></li>
+                        <li><span class="code">php artisan migrate --seed</span></li>
+                        <li><span class="code">php artisan serve</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Demo Accounts</h3>
+                    <ul>
+                        <li>Admin: <span class="code">enerjaizenigeria@gmail.com</span></li>
+                        <li>Customer: <span class="code">francisitafor1@gmail.com</span></li>
+                        <li>Password: <span class="code">password123</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Local setup</span>
+            <span>9 / 10</span>
+        </div>
+    </section>
+
+    <section class="slide hero">
+        <div>
+            <div class="kicker">Summary</div>
+            <h1>Submission Ready</h1>
+            <p>The implementation satisfies the requested e-commerce brief while adding practical production-style touches: role separation, payment verification, image management, validation, user profiles, stock protection, admin reporting, and automated tests.</p>
+            <div class="stack">
+                <span class="pill">Product Listing</span>
+                <span class="pill">Cart</span>
+                <span class="pill">Checkout</span>
+                <span class="pill">Authentication</span>
+                <span class="pill">Admin Dashboard</span>
+                <span class="pill">Smarty Bonus</span>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Thank you</span>
+            <span>10 / 10</span>
+        </div>
+    </section>
+</body>
+</html>
